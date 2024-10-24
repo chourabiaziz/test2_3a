@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProduitController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello ! ✅</h1>
+  
+
+
+<table  border="1" >
+    <thead>
+        <th>Nom</th>
+        <th>Prix</th>
+        <th>boutique</th>
+        <th>Date</th>
+        <th colspan="2" >Actions</th>
+    </thead>
+    <tbody>
+            {% for x in produits %}
+                 <tr>
+                    <td>{{x.nom}}</td>
+                    <td>{{x.prix}}</td>
+                    <td>{{x.boutique}}</td>
+                    <td>{{x.datecreation  | date('Y-M-D') }}</td>
+                    <td><a href="produit/show/{{x.id}}">consulter</a></td>
+                    <td><a href="produit/edit/{{x.id}}">modifier</a></td>
+                    <td><a href="produit/delete/{{x.id}}">delete</a></td>
+                 </tr>
+            {% endfor %}
+           
+    </tbody>
+</table>
+
+
+
+<a href="/produit/add">ajouter un produit</a>
+
+
+
+
+
+<hr>
+DQL : les prix entre 1000 et 3000 sont : 
+<hr>
+
+{% for x in result %}
+    {{x.nom}}
+{% endfor %}
+
+
+
+
+<hr>
+QueryBuilder : les prix entre 1000 et 3000 sont : 
+<hr>
+
+{% for x in result_query_builder %}
+    {{x.nom}}
+{% else %}
+no data
+{% endfor %}
+
+
+</div>
+{% endblock %}
